@@ -1,5 +1,6 @@
 from moviepy.editor import VideoFileClip
-from os.path import realpath
+from os.path import realpath, exists
+from os import makedirs
 from sys import argv
 import numpy as np
 import cv2
@@ -23,6 +24,10 @@ def set_startvideo_attr(source_video: VideoFileClip):
     '''
     调整视频的分辨率和帧率
     '''
+    temp_path = realpath('./temp')
+    if not exists(temp_path):
+        makedirs(temp_path)
+
     videoCapture = cv2.VideoCapture('./source/Start.mp4')
 
     fps = source_video.fps
